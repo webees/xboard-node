@@ -1,10 +1,12 @@
 #!/bin/sh
 
-XRAYR_PANEL_TYPE=${XRAYR_PANEL_TYPE:-NewV2board}
-XRAYR_API_HOST=${XRAYR_API_HOST:-https://example.com}
-XRAYR_API_KEY=${XRAYR_API_KEY:-88888888}
-XRAYR_NODE_ID=${XRAYR_NODE_ID:-8}
-XRAYR_NODE_TYPE=${XRAYR_NODE_TYPE:-V2ray}
+PANEL_TYPE=${PANEL_TYPE:-NewV2board}
+API_HOST=${API_HOST:-https://api.host.com}
+API_KEY=${API_KEY:-88888888}
+NODE_ID=${NODE_ID:-8}
+NODE_TYPE=${NODE_TYPE:-V2ray}
+CERT_MODE=${CERT_MODE:-none}
+CERT_DOMAIN=${CERT_DOMAIN:-cert.domain.com}
 
 cat > /etc/XrayR/config.yml <<EOF
 Log:
@@ -22,12 +24,12 @@ ConnectionConfig:
   DownlinkOnly: 4                          # 当连接上行线路关闭后的时间限制，秒
   BufferSize: 64                           # 每个连接的内部缓存大小，kB
 Nodes:
-  - PanelType: $XRAYR_PANEL_TYPE           # 面板类型：SSpanel, NewV2board, V2board, PMpanel, Proxypanel
+  - PanelType: $PANEL_TYPE                 # 面板类型：SSpanel, NewV2board, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: $XRAYR_API_HOST
-      ApiKey: $XRAYR_API_KEY
-      NodeID: $XRAYR_NODE_ID
-      NodeType: $XRAYR_NODE_TYPE           # 节点类型：V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
+      ApiHost: $API_HOST
+      ApiKey: $API_KEY
+      NodeID: $NODE_ID
+      NodeType: $NODE_TYPE                 # 节点类型：V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 10                          # API请求超时时间
       EnableVless: false                   # 是否启用Vless（仅适用于V2ray类型）
       EnableXTLS: false                    # 是否启用XTLS（适用于V2ray和Trojan类型）
@@ -65,7 +67,9 @@ Nodes:
           Dest: 80                         # 必填，备用服务器的目标，详细信息请参考 https://xtls.github.io/config/fallback/
           ProxyProtocolVer: 0              # 发送的PROXY协议版本，设置为0表示禁用
       CertConfig:
-        CertMode: none                     # 获取证书的选项：none, file, http, dns。选择"none"将强制禁用TLS配置。
+        CertMode: $CERT_MODE               # 获取证书的选项：none, file, http, dns。选择"none"将强制禁用TLS配置。
+        RejectUnknownSni: true             # 拒绝未知的sni
+        CertDomain: $CERT_DOMAIN           # 需要证书的域名
 EOF
 
 XrayR --config /etc/XrayR/config.yml
