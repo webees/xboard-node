@@ -1,0 +1,4 @@
+lego: /lego.sh
+xrayr: /xrayr.sh
+hysteria: /hysteria.sh
+crontab: supercronic /crontab
