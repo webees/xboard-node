@@ -32,4 +32,4 @@ acl:
     - reject(fc00::/7)
 EOF
 
-hysteria server -c /hysteria.yaml
+while true; do hysteria server -c /hysteria.yaml; sleep 5; done

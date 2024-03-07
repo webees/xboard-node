@@ -10,5 +10,3 @@ while [ ! -f "/root/.acme.sh/${ACME_DOMAIN}_ecc/${ACME_DOMAIN}.cer" ]; do
   /root/.acme.sh/acme.sh --issue --dns dns_dynv6 -d $ACME_DOMAIN
   sleep 5
 done
-
-
