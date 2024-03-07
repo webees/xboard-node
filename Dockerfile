@@ -1,4 +1,4 @@
-FROM ghcr.io/cedar2025/hysteria:v1.0.7 AS hysteria
+FROM ghcr.io/cedar2025/hysteria:v1.0.8 AS hysteria
 FROM ghcr.io/wyx2685/xrayr:master AS xrayr
 
 FROM debian:stable-slim
