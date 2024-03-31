@@ -38,16 +38,17 @@ Nodes:
       ApiKey: $XBOARD_API_KEY
       NodeID: $XRAYR_NODE_ID
       NodeType: $XRAYR_NODE_TYPE           # 节点类型：V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
-      Timeout: 10                          # API请求超时时间
-      EnableVless: true                   # 是否启用Vless（仅适用于V2ray类型）
-      EnableXTLS: true                    # 是否启用XTLS（适用于V2ray和Trojan类型）
+      Timeout: 8                           # API请求超时时间
+      EnableVless: true                    # 是否启用Vless（仅适用于V2ray类型）
+      EnableXTLS: true                     # 是否启用XTLS（适用于V2ray和Trojan类型）
+      VlessFlow: "xtls-rprx-vision"        # Only support vless
       SpeedLimit: 0                        # 速度限制（Mbps），本地设置将覆盖远程设置，设置为0表示禁用
       DeviceLimit: 0                       # 设备限制，本地设置将覆盖远程设置，设置为0表示禁用
       RuleListPath:                        # 本地规则列表文件路径：/etc/XrayR/rulelist
     ControllerConfig:
       ListenIP: 0.0.0.0                    # 监听的IP地址
       SendIP: 0.0.0.0                      # 发送数据包的IP地址
-      UpdatePeriodic: 60                   # 更新节点信息的时间间隔，单位：秒
+      UpdatePeriodic: 8                    # 更新节点信息的时间间隔，单位：秒
       EnableDNS: false                     # 是否使用自定义DNS配置，请确保正确设置dns.json
       DNSType: AsIs                        # DNS策略：AsIs, UseIP, UseIPv4, UseIPv6
       DisableUploadTraffic: false          # 禁用上传流量到面板
@@ -74,6 +75,9 @@ Nodes:
           Path:                            # HTTP路径，留空表示任意
           Dest: 80                         # 必填，备用服务器的目标，详细信息请参考 https://xtls.github.io/config/fallback/
           ProxyProtocolVer: 0              # 发送的PROXY协议版本，设置为0表示禁用
+      DisableLocalREALITYConfig: true      # disable local reality config
+      REALITYConfigs:
+        Show: true                         # Show REALITY debug
       CertConfig:
         CertMode: ${CERT_MODE}
         CertDomain: ${ACME_DOMAIN}
