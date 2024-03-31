@@ -39,8 +39,8 @@ Nodes:
       NodeID: $XRAYR_NODE_ID
       NodeType: $XRAYR_NODE_TYPE           # 节点类型：V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 10                          # API请求超时时间
-      EnableVless: false                   # 是否启用Vless（仅适用于V2ray类型）
-      EnableXTLS: false                    # 是否启用XTLS（适用于V2ray和Trojan类型）
+      EnableVless: true                   # 是否启用Vless（仅适用于V2ray类型）
+      EnableXTLS: true                    # 是否启用XTLS（适用于V2ray和Trojan类型）
       SpeedLimit: 0                        # 速度限制（Mbps），本地设置将覆盖远程设置，设置为0表示禁用
       DeviceLimit: 0                       # 设备限制，本地设置将覆盖远程设置，设置为0表示禁用
       RuleListPath:                        # 本地规则列表文件路径：/etc/XrayR/rulelist
