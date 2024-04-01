@@ -1,22 +1,22 @@
 #!/bin/sh
-
-if [ -z "$XRAYR_NODE_ID" ]; then
+  
+  if [ -z "$XRAYR_NODE_ID" ]; then
   exit 1
-fi
-
-CERT_MODE=none
-
-if [ -n "$ACME_DOMAIN" ]; then
+  fi
+  
+  CERT_MODE=none
+  
+  if [ -n "$ACME_DOMAIN" ]; then
   while [ ! -f "/root/.acme.sh/${ACME_DOMAIN}_ecc/${ACME_DOMAIN}.cer" ]; do
-      sleep 5
+  sleep 5
   done
   CERT_MODE=file
-fi
-
-XRAYR_PANEL_TYPE=${XRAYR_PANEL_TYPE:-NewV2board}
-XRAYR_NODE_TYPE=${XRAYR_NODE_TYPE:-V2ray}
-
-cat > /xrayr.yml <<EOF
+  fi
+  
+  XRAYR_PANEL_TYPE=${XRAYR_PANEL_TYPE:-NewV2board}
+  #XRAYR_NODE_TYPE=${XRAYR_NODE_TYPE:-V2ray}
+  
+  cat > /xrayr.yml <<EOF
 Log:
   Level: none                              # 日志级别：none, error, warning, info, debug
   AccessPath:                              # 访问日志路径：/etc/XrayR/access.Log
@@ -39,8 +39,8 @@ Nodes:
       NodeID: $XRAYR_NODE_ID
       NodeType: $XRAYR_NODE_TYPE           # 节点类型：V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 8                           # API请求超时时间
-      EnableVless: true                    # 是否启用Vless（仅适用于V2ray类型）
-      EnableXTLS: true                     # 是否启用XTLS（适用于V2ray和Trojan类型）
+      EnableVless: false                    # 是否启用Vless（仅适用于V2ray类型）
+      EnableXTLS: false                     # 是否启用XTLS（适用于V2ray和Trojan类型）
       VlessFlow: "xtls-rprx-vision"        # Only support vless
       SpeedLimit: 0                        # 速度限制（Mbps），本地设置将覆盖远程设置，设置为0表示禁用
       DeviceLimit: 0                       # 设备限制，本地设置将覆盖远程设置，设置为0表示禁用
@@ -75,15 +75,15 @@ Nodes:
           Path:                            # HTTP路径，留空表示任意
           Dest: 80                         # 必填，备用服务器的目标，详细信息请参考 https://xtls.github.io/config/fallback/
           ProxyProtocolVer: 0              # 发送的PROXY协议版本，设置为0表示禁用
-      EnableREALITY: true                  # Enable REALITY
-      DisableLocalREALITYConfig: true      # disable local reality config
+      EnableREALITY: false                  # Enable REALITY
+      DisableLocalREALITYConfig: false      # disable local reality config
       REALITYConfigs:
-        Show: true                         # Show REALITY debug
+        Show: false                         # Show REALITY debug
       CertConfig:
         CertMode: ${CERT_MODE}
         CertDomain: ${ACME_DOMAIN}
         CertFile: /root/.acme.sh/${ACME_DOMAIN}_ecc/${ACME_DOMAIN}.cer
         KeyFile: /root/.acme.sh/${ACME_DOMAIN}_ecc/${ACME_DOMAIN}.key
-EOF
-
-while true; do XrayR --config /xrayr.yml; sleep 5; done
+  EOF
+  
+  while true; do XrayR --config /xrayr.yml; sleep 5; done
