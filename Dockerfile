@@ -1,10 +1,10 @@
 FROM ghcr.io/cedar2025/hysteria:862f66a AS hysteria
-FROM ghcr.io/wyx2685/xrayr:master AS xrayr
+FROM ghcr.io/wyx2685/xrayr:v0.9.2-20240320 AS xrayr
 
 FROM debian:stable-slim
 
 ARG SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.29/supercronic-linux-amd64
-ARG OVERMIND_URL=https://github.com/DarthSim/overmind/releases/download/v2.4.0/overmind-v2.4.0-linux-amd64.gz
+ARG OVERMIND_URL=https://github.com/DarthSim/overmind/releases/download/v2.5.1/overmind-v2.5.1-linux-amd64.gz
 
 ENV TZ="Asia/Shanghai" \
 
