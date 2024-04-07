@@ -15,6 +15,7 @@ fi
 
 XRAYR_PANEL_TYPE=${XRAYR_PANEL_TYPE:-NewV2board}
 XRAYR_NODE_TYPE=${XRAYR_NODE_TYPE:-V2ray}
+XRAYR_ENABLE_VLESS=${XRAYR_ENABLE_VLESS:-true}
 
 cat > /xrayr.yml <<EOF
 Log:
@@ -39,7 +40,7 @@ Nodes:
       NodeID: $XRAYR_NODE_ID
       NodeType: $XRAYR_NODE_TYPE           # 节点类型：V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 8                           # API请求超时时间
-      EnableVless: true                    # 是否启用Vless（仅适用于V2ray类型）
+      EnableVless: $XRAYR_ENABLE_VLESS     # 是否启用Vless（仅适用于V2ray类型）
       EnableXTLS: true                     # 是否启用XTLS（适用于V2ray和Trojan类型）
       VlessFlow: "xtls-rprx-vision"        # Only support vless
       SpeedLimit: 0                        # 速度限制（Mbps），本地设置将覆盖远程设置，设置为0表示禁用
