@@ -1,5 +1,5 @@
 FROM ghcr.io/cedar2025/hysteria:862f66a AS hysteria
-FROM ghcr.io/wyx2685/xrayr:v0.9.2-20240320 AS xrayr
+FROM ghcr.io/wyx2685/xrayr:v0.9.2-20240326 AS xrayr
 
 FROM debian:stable-slim
 
