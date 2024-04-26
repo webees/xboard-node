@@ -87,4 +87,5 @@ Nodes:
         KeyFile: /root/.acme.sh/${ACME_DOMAIN}_ecc/${ACME_DOMAIN}.key
 EOF
 
-while true; do XrayR --config /xrayr.yml; sleep 5; done
+XrayR --config /xrayr.yml
+# while true; do XrayR --config /xrayr.yml; sleep 5; done
