@@ -1,8 +1,8 @@
 
 # https://github.com/cedar2025/hysteria
-FROM ghcr.io/cedar2025/hysteria:4862ae6 AS hysteria
+FROM ghcr.io/cedar2025/hysteria:c695f2c AS hysteria
 # https://github.com/wyx2685/XrayR
-FROM ghcr.io/wyx2685/xrayr:v0.9.2-20240326 AS xrayr
+FROM ghcr.io/wyx2685/xrayr:v0.9.4-20240729 AS xrayr
 
 FROM debian:stable-slim
 
